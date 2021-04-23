@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import useGo from '../../hooks/useGo'
+import useGo from 'hooks/useGo'
 import axios from 'axios'
 import * as S from './styles'
 
