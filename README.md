@@ -1,5 +1,8 @@
 # POKEDEX
 
+## LINK
+# [SURGE](http://nicepokedex.surge.sh/)
+
 ## Integrantes
 
 **Nome dos integrantes:**
@@ -15,9 +18,7 @@
 
 ## Wireframe Design
 
-[Design Figma](https://www.figma.com/file/CrM78q7Euv4Qnquzuzk577/Pokedex?node-id=0%3A1)
-
-Link do Surge: www.link.com.br
+[Design Figma](https://www.figma.com/proto/CrM78q7Euv4Qnquzuzk577/Pokedex?node-id=11%3A4&scaling=min-zoom&page-id=0%3A1)
 
 O que funciona:
 
