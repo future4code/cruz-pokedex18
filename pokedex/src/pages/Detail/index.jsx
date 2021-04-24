@@ -1,3 +1,4 @@
+import DetailBasicInformation from 'components/DetailBasicInformation'
 import usePokeapi from 'hooks/usePokeapi'
 import {useParams} from 'react-router'
 import * as S from './styles'
@@ -10,10 +11,14 @@ const Detail = props => {
 
   return (
     <S.DetailContainer>
-      Nome: {pokemon.name && <strong>{pokemon.name}</strong>}
-      Type:{' '}
       {pokemon.name && (
-        <strong>{pokemon.types.map(i => i.type.name).join(' ')}</strong>
+        <>
+          <S.DetailImg
+            src={pokemon.sprites.other['official-artwork'].front_default}
+          />
+
+          <DetailBasicInformation {...pokemon} />
+        </>
       )}
     </S.DetailContainer>
   )

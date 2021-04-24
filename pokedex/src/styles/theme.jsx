@@ -17,7 +17,8 @@ const theme = {
     button1: '2rem',
     button2: '1.5rem'
   },
-  space: number => number * 8 + 'px'
+  space: number => number * 8 + 'px',
+  fixedFooter: false
 }
 
 export default theme
