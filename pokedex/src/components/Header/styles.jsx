@@ -1,20 +1,25 @@
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 export const Container = styled.div`
   width: 100%;
   height: 75px;
   background: ${({theme}) => theme.colors.primary};
   box-shadow: 0 8px 8px 8px rgba(0, 0, 0, 0.5);
+  overflow: overlay;
 `
 
 export const Header = styled.header`
   width: clamp(350px, 80%, 1400px);
-  /* height: 70px; */
+  /* margin-top: 2rem; */
+  height: 100px;
   margin: auto;
   display: grid;
-  grid: 75px / 1fr 2fr 5fr;
+  grid: 85px / 1fr 2fr 5fr;
   place-items: center;
+  background: ${({theme}) => theme.colors.primary};
   box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.5);
+  z-index: 2;
 `
 
 export const Logo = styled.img`
@@ -34,7 +39,7 @@ export const Menu = styled.nav`
   place-items: center;
 `
 
-export const MenuItem = styled.span`
+export const MenuItem = styled(Link)`
   color: white;
   font-size: 1.4rem;
 `

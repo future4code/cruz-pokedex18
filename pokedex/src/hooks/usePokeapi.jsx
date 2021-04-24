@@ -35,6 +35,7 @@ const usePokeapi = (...option) => {
         }
       }
 
+      // console.log(r)
       setData(r)
     } catch (e) {
       console.error(e)
@@ -45,12 +46,9 @@ const usePokeapi = (...option) => {
     try {
       const r = await Promise.all(
         list.map(i => {
-          // let url = `${url}/${i[props]}`
-          console.log('ENTREI')
+          console.log('DENTRO')
           if (typeof i[props] !== 'string') {
-            console.log('EH SIM!', i[props])
             return pokeapi({url: `pokemon/${i[props].name}`})
-            i[props].forEach(j => console.log(j.pokemon.name))
           }
 
           return pokeapi({url: `${url}/${i[props]}`})
@@ -62,7 +60,9 @@ const usePokeapi = (...option) => {
     }
   }
 
-  const update = (...option) => request(option)
+  const update = (...option) => {
+    request(option)
+  }
 
   return [data, update]
 }

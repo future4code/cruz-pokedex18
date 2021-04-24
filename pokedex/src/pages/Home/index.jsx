@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import useGo from 'hooks/useGo'
 import * as S from './styles'
 import PokeCard from 'components/PokeCard'
@@ -12,14 +12,17 @@ const filterInitialValues = {
   order: ''
 }
 
-const Home = () => {
+const Home = props => {
   const go = useGo()
   const filter = useInput(filterInitialValues)
+  const option = useRef(filterInitialValues)
 
   const [pokemonList, setPokemonList] = usePokeapi('pokemon', 'name')
+  console.log(props)
 
   useEffect(() => {
-    if (filter.type) {
+    if (filter.type && filter.type !== option.current.type) {
+      option.current.type = filter.type
       console.log('partiu', filter.type)
       setPokemonList(`type/${filter.type}`, 'pokemon')
     }

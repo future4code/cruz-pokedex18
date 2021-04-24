@@ -10,7 +10,7 @@ export const Container = styled.main`
 export const Content = styled.div`
   width: clamp(350px, 80%, 1280px);
   margin: auto;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 1);
   box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
-  padding-top: 50px;
+  padding: 50px 0;
 `
