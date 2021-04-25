@@ -2,9 +2,10 @@ import Container from 'components/Container'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import Detail from '../pages/Detail'
-import Home from '../pages/Home'
-import Pokedex from '../pages/Pokedex'
+import Home from 'pages/Home'
+import Database from 'pages/Database'
+import Detail from 'pages/Detail'
+import Pokedex from 'pages/Pokedex'
 
 const Router = () => {
   return (
@@ -15,6 +16,10 @@ const Router = () => {
           <Switch>
             <Route path='/' exact children={() => alert('ok')}>
               <Home />
+            </Route>
+
+            <Route path='/database' exact children={() => alert('ok')}>
+              <Database />
             </Route>
 
             <Route path='/pokedex'>

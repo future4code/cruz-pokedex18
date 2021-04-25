@@ -7,7 +7,12 @@ const Filter = ({filter}) => {
     <S.Container>
       <S.SearchContainer>
         <S.SearchLabel>Search</S.SearchLabel>
-        <S.SearchInput placeholder='Name or #ID' />
+        <S.SearchInput
+          name='search'
+          value={filter.search}
+          onChange={filter.control}
+          placeholder='Name or #ID'
+        />
       </S.SearchContainer>
       <S.Image src={pokebola} />
       <S.TypeContainer>
@@ -22,13 +27,13 @@ const Filter = ({filter}) => {
         </S.TypeInput>
       </S.TypeContainer>
 
-      <S.OrderContainer>
+      {/* <S.OrderContainer>
         <S.OrderLabel>Order</S.OrderLabel>
 
         <S.OrderInput>
           <S.OrderOption value>Choose order</S.OrderOption>
         </S.OrderInput>
-      </S.OrderContainer>
+      </S.OrderContainer> */}
     </S.Container>
   )
 }
