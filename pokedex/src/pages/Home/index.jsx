@@ -1,43 +1,45 @@
-import {useEffect, useRef, useState} from 'react'
-import useGo from 'hooks/useGo'
 import * as S from './styles'
-import PokeCard from 'components/PokeCard'
-import usePokeapi from 'hooks/usePokeapi'
-import useInput from 'hooks/useInput'
-import Filter from 'components/Filter'
+import {useTheme} from 'styled-components'
+import pokemonVideo from 'assets/videos/pokemon-opening-season1.webm'
+import {useEffect} from 'react'
+import pokebola from 'assets/images/pokebola.png'
 
-const filterInitialValues = {
-  search: '',
-  type: '',
-  order: ''
-}
-
-const Home = props => {
-  const go = useGo()
-  const filter = useInput(filterInitialValues)
-  const option = useRef(filterInitialValues)
-
-  const [pokemonList, setPokemonList] = usePokeapi('pokemon', 'name')
-  console.log(props)
+const Home = () => {
+  const theme = useTheme()
+  console.log(theme.containerFull)
 
   useEffect(() => {
-    if (filter.type && filter.type !== option.current.type) {
-      option.current.type = filter.type
-      console.log('partiu', filter.type)
-      setPokemonList(`type/${filter.type}`, 'pokemon')
+    theme.dispatch({
+      type: 'set',
+      prop: {
+        containerFull: false,
+        containerPadding: 0
+      }
+    })
+    return () => {
+      theme.dispatch({
+        type: 'set',
+        prop: {
+          containerFull: true,
+          containerPadding: '50px 0'
+        }
+      })
     }
-  }, [filter])
+  }, [])
 
   return (
-    <>
-      <Filter filter={filter} />
-      <S.CardContainer>
-        {pokemonList.length &&
-          pokemonList
-            .sort((a, b) => a.id - b.id)
-            .map(pokemon => <PokeCard key={pokemon.id} {...pokemon} />)}
-      </S.CardContainer>
-    </>
+    <S.Container>
+      <S.Video autoPlay loop muted src={pokemonVideo} />
+      <S.Shadow />
+      <S.Content>
+        <S.TitleTop align='start'>The nostalgic Pokemon is back...</S.TitleTop>
+        <S.TitleBottom align='end'>
+          See the infinite list and choose your Pokemon
+        </S.TitleBottom>
+        <S.Image src={pokebola} />
+      </S.Content>
+      <S.Arrow />
+    </S.Container>
   )
 }
 

@@ -13,7 +13,7 @@ const Header = () => {
         <S.Animation src={pikachu} />
         <S.Menu>
           <S.MenuItem to='/'>Home</S.MenuItem>
-          <S.MenuItem to='/'>Database</S.MenuItem>
+          <S.MenuItem to='/database'>Database</S.MenuItem>
           <S.MenuItem to='/pokedex'>Pokedex</S.MenuItem>
           <S.MenuItem to='/types'>Types</S.MenuItem>
           <S.MenuItem to='/about'>About</S.MenuItem>

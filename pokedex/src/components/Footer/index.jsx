@@ -13,15 +13,18 @@ const Footer = () => {
         <Link to='/'>
           <S.Logo src={logo} />
         </Link>
-        <Link url='http://www.facebook.com'>
+        <a href='http://www.facebook.com'>
           <S.Social src={squirtle} />
-        </Link>
-        <Link url='http://www.twitter.com'>
+        </a>
+        <a href='http://www.twitter.com'>
           <S.Social src={charmander} />
-        </Link>
-        <Link url='http://www.instagram.com'>
+        </a>
+        <a href='http://www.instagram.com'>
           <S.Social src={bulbasaur} />
-        </Link>
+        </a>
+        <S.Authors src={BsPeopleCircle} />
+        <S.Authors src={BsPeopleCircle} />
+        <S.Authors src={BsPeopleCircle} />
         <S.Authors src={BsPeopleCircle} />
       </S.Footer>
     </S.Container>
