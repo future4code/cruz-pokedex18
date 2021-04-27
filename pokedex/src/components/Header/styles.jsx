@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 export const Container = styled.div`
   width: 100%;
@@ -44,7 +44,17 @@ export const Menu = styled.nav`
   place-items: center;
 `
 
-export const MenuItem = styled(Link)`
+export const MenuItem = styled(NavLink)`
   color: white;
   font-size: 1.4rem;
+  text-decoration: none;
+
+  &.active {
+    color: ${({theme}) => theme.colors.secondary};
+    font-weight: bold;
+  }
+
+  :hover {
+    text-decoration: underline;
+  }
 `

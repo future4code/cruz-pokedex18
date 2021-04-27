@@ -3,10 +3,11 @@ import {useTheme} from 'styled-components'
 import pokemonVideo from 'assets/videos/pokemon-opening-season1.webm'
 import {useEffect} from 'react'
 import pokebola from 'assets/images/pokebola.png'
+import threePokemons from 'assets/images/three-pokemons.png'
+import mewTwo from 'assets/images/mewtwo.png'
 
 const Home = () => {
   const theme = useTheme()
-  console.log(theme.containerFull)
 
   useEffect(() => {
     theme.dispatch({
@@ -36,7 +37,9 @@ const Home = () => {
         <S.TitleBottom align='end'>
           See the infinite list and choose your Pokemon
         </S.TitleBottom>
-        <S.Image src={pokebola} />
+        <S.Image src={threePokemons} />
+        <S.ImageMewTwo src={mewTwo} />
+        <S.MewTwoPower />
       </S.Content>
       <S.Arrow />
     </S.Container>

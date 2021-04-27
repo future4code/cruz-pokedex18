@@ -1,40 +1,45 @@
 import * as S from './styles'
 import {PokedexContext} from 'contexts/pokedex'
-import {useContext, useEffect, useState} from 'react'
-import PokedexCard from 'components/PokedexCard'
+import {useContext, useState} from 'react'
 import {useTheme} from 'styled-components'
-import pokedexImage from 'assets/images/PokeContainer.png'
+import pokebola from 'assets/images/pokebola-black.png'
+import PokedexScreen from 'components/PokedexScreen'
+import PokedexInformation from 'components/PokedexInformation'
+import PokedexPokemons from 'components/PokedexPokemons'
 
 const Pokedex = () => {
   const theme = useTheme()
   const pokedex = useContext(PokedexContext)
   const [active, setActive] = useState({})
 
-  useEffect(() => {
-    theme.dispatch({
-      type: 'set',
-      prop: {
-        containerFull: false,
-        containerBackground: 'none'
-      }
-    })
+  const count = pokedex.list.length
 
-    return () => {
-      theme.dispatch({
-        type: 'set',
-        prop: {
-          containerFull: true,
-          containerBackground: '#fff'
-        }
-      })
-    }
-  }, [])
+  const sum = (sum, i) => {
+    const types = i.types.map(j => j.type.name)
+    let temp = {}
+
+    types.forEach(i => (temp = {...temp, [i]: sum[i] + 1 || 1}))
+    return {...sum, ...temp}
+  }
+
+  const countTypes = count && pokedex.list.reduce(sum, {})
+  console.log(countTypes)
 
   return (
-    <S.PokedexContainer>
-      <S.Pokedex src={pokedexImage} />
-      <S.Title>{active?.name || 'Select your pokemon'}</S.Title>
-      <S.Screen>
+    <S.Container>
+      <S.TitleContainer>
+        <S.Image src={pokebola} />
+        <S.Title>Pokedex</S.Title>
+      </S.TitleContainer>
+      <S.PokedexContainer>
+        <PokedexScreen pokemon={active} />
+        <PokedexInformation
+          amount={count}
+          types={countTypes}
+          pokemons={pokedex.list}
+        />
+        <PokedexPokemons pokemons={pokedex.list} select={setActive} />
+        {/* <S.Screen>
         {active.name && (
           <>
             <S.ScreenImage
@@ -45,13 +50,14 @@ const Pokedex = () => {
             />
           </>
         )}
-      </S.Screen>
-      <S.PokeCardContainer>
+      </S.Screen> */}
+        {/* <S.PokeCardContainer>
         {pokedex.list.map(pokemon => (
           <PokedexCard pokemon={pokemon} select={setActive} />
         ))}
-      </S.PokeCardContainer>
-    </S.PokedexContainer>
+*/}
+      </S.PokedexContainer>
+    </S.Container>
   )
 }
 

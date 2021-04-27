@@ -22,10 +22,10 @@ const Footer = () => {
         <a href='http://www.instagram.com'>
           <S.Social src={bulbasaur} />
         </a>
-        <S.Authors src={BsPeopleCircle} />
-        <S.Authors src={BsPeopleCircle} />
-        <S.Authors src={BsPeopleCircle} />
-        <S.Authors src={BsPeopleCircle} />
+        <S.Authors />
+        <S.Authors />
+        <S.Authors />
+        <S.Authors />
       </S.Footer>
     </S.Container>
   )

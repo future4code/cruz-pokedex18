@@ -155,4 +155,5 @@ const usePokeapi = (...option) => {
   return [data, update, clear, filterByName]
 }
 
+export {pokeapi}
 export default usePokeapi
