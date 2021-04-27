@@ -65,7 +65,6 @@ const usePokeapi = (...option) => {
       previous.current = next.current
       if (clear) return setData([...r])
 
-      console.log(Array.isArray(r), typeof r)
       if (!data.length && !Array.isArray(r)) setData(r)
       else {
         let PokeWithImages = r
