@@ -46,9 +46,9 @@ const Detail = props => {
   // console.log(evolution)
 
   const getEvolutions = async evolutionChain => {
-    // chain.species.name
-    // chain.evolves_to[0].species.name
-    // chain.evolves_to[0].evolves_to[0].species.name
+    //chain.species.name
+    //chain.evolves_to[0].species.name
+    //chain.evolves_to[0].evolves_to[0].species.name
 
     let names = []
     if (evolutionChain?.chain?.species?.name) {
