@@ -2,6 +2,7 @@
 
 Seja bem vinda(o)!
 Este é um projeto de Pokédex. Foi utilizada a API da PokéAPI como referência.
+Dissescamos toda a API para pegar o maximo de informações com o poder oculto do Sharingan!
 
 ## Veja Ao Vivo e a cores
 
