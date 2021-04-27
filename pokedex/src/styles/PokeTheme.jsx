@@ -1,5 +1,6 @@
 import {useReducer} from 'react'
 import {ThemeProvider} from 'styled-components'
+import GlobalStyle from './global'
 
 const theme = {
   colors: {
@@ -44,7 +45,10 @@ const PokeTheme = ({children}) => {
   const [pokeTheme, dispatch] = useReducer(pokeThemeReducer, theme)
 
   return (
-    <ThemeProvider theme={{...pokeTheme, dispatch}}>{children}</ThemeProvider>
+    <ThemeProvider theme={{...pokeTheme, dispatch}}>
+      <GlobalStyle />
+      {children}
+    </ThemeProvider>
   )
 }
 

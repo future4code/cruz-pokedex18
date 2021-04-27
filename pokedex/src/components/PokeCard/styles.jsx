@@ -13,6 +13,25 @@ export const CardContainer = styled.div`
   background-color: ${props => props.typeColor || 'gray'};
 
   position: relative;
+  transform: translate(0, 0) skew(0deg, 0deg) translate3d(0, 0, 0);
+  transform-style: preserve-3d;
+  perspective: none;
+  backface-visibility: hidden;
+  transition: all 0.3s;
+
+  * {
+    transform: translate(0, 0) skew(0deg, 0deg) translate3d(0, 0, 0);
+    transform-style: preserve-3d;
+    perspective: none;
+    backface-visibility: hidden;
+  }
+
+  :hover {
+    transform: translate(-2%, -2%) skew(-1deg, -1deg) translate3d(0, 0, 0);
+    transform-style: preserve-3d;
+    /* border: 3px solid #333; */
+    box-shadow: 8px 8px 4px #333;
+  }
 `
 export const PokeName = styled.h2`
   font-weight: bold;

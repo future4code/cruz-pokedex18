@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import pikachu from '../../assets/images/pikachu-correninho.gif'
 import logo from '../../assets/images/logo.png'
 import * as S from './styles'
@@ -7,12 +7,14 @@ const Header = () => {
   return (
     <S.Container>
       <S.Header>
-        <Link to='/'>
+        <NavLink exact to='/'>
           <S.Logo src={logo} />
-        </Link>
+        </NavLink>
         <S.Animation src={pikachu} />
         <S.Menu>
-          <S.MenuItem to='/'>Home</S.MenuItem>
+          <S.MenuItem exact to='/'>
+            Home
+          </S.MenuItem>
           <S.MenuItem to='/database'>Database</S.MenuItem>
           <S.MenuItem to='/pokedex'>Pokedex</S.MenuItem>
           <S.MenuItem to='/types'>Types</S.MenuItem>

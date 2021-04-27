@@ -1,46 +1,36 @@
-import Container from 'components/Container'
-import Header from 'components/Header'
-import Footer from 'components/Footer'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import Home from 'pages/Home'
-import Database from 'pages/Database'
-import Detail from 'pages/Detail'
-import Pokedex from 'pages/Pokedex'
+import {
+  Home,
+  Database,
+  Detail,
+  Pokedex,
+  Types,
+  About,
+  Contact,
+  NotFound
+} from 'pages'
+import ScrollToTop from 'components/ScrollToTop'
+import Layout from 'components/Layout'
 
 const Router = () => {
   return (
-    <>
-      <BrowserRouter>
-        <Header />
-        <Container>
-          <Switch>
-            <Route path='/' exact children={() => alert('ok')}>
-              <Home />
-            </Route>
-
-            <Route path='/database' exact children={() => alert('ok')}>
-              <Database />
-            </Route>
-
-            <Route path='/pokedex'>
-              <Pokedex />
-            </Route>
-
-            <Route path='/detail/:id' children={() => console.log('ROTA')}>
-              <Detail />
-            </Route>
-
-            <Route>
-              <h1>erro 404 not found</h1>
-            </Route>
-            <Route
-            // children={() => window.scroll({top: 0, behavior: 'smooth'})}
-            />
-          </Switch>
-        </Container>
-        <Footer />
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Layout>
+        <ScrollToTop />
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path='/database' component={Database} />
+          <Route path='/pokedex' component={Pokedex} />
+          <Route exact path='/detail' component={Detail} />
+          <Route path='/detail/:id' component={Detail} />
+          <Route exact path='/types' component={Types} />
+          <Route path='/types/:type' component={Types} />
+          <Route path='/about' component={About} />
+          <Route path='/contact' component={Contact} />
+          <Route component={NotFound} />
+        </Switch>
+      </Layout>
+    </BrowserRouter>
   )
 }
 

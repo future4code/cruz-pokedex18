@@ -6,6 +6,7 @@ import usePokeapi from 'hooks/usePokeapi'
 import useInput from 'hooks/useInput'
 import Filter from 'components/Filter'
 import {useTheme} from 'styled-components'
+import Title from 'components/Title'
 
 const filterInitialValues = {
   search: '',
@@ -40,6 +41,7 @@ const Database = props => {
 
   return (
     <>
+      <Title>List of all Pokemons</Title>
       <Filter filter={filter} />
       <S.CardContainer>
         {pokemonList.length &&
