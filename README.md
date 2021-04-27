@@ -1,8 +1,7 @@
-# POKEDEX
+# BEST POKEDEX OF THE WORLD
+
 Seja bem vinda(o)!
 Este é um projeto de Pokédex. Foi utilizada a API da PokéAPI como referência.
-
-# Pokedex
 
 ## Veja Ao Vivo e a cores
 
@@ -36,7 +35,13 @@ Este é um projeto de Pokédex. Foi utilizada a API da PokéAPI como referência
 
 
 ## Images
-![Screenshot from 2021-04-25 20-49-42](https://user-images.githubusercontent.com/7757352/116013823-8702f800-a608-11eb-8c17-fec09aed2a35.png)
+![Screenshot from 2021-04-27 00-14-32](https://user-images.githubusercontent.com/7757352/116179468-c8b99e80-a6ed-11eb-803d-b404213e7ca1.png)
+![Screenshot from 2021-04-27 00-14-37](https://user-images.githubusercontent.com/7757352/116179471-cc4d2580-a6ed-11eb-8f8d-c4735bca8718.png)
+![Screenshot from 2021-04-26 23-00-48](https://user-images.githubusercontent.com/7757352/116179443-be97a000-a6ed-11eb-9cdb-7087c8e35e0b.png)
+![Screenshot from 2021-04-27 00-14-16](https://user-images.githubusercontent.com/7757352/116179452-c2c3bd80-a6ed-11eb-809d-f69078690597.png)
+![Screenshot from 2021-04-27 00-14-22](https://user-images.githubusercontent.com/7757352/116179455-c5beae00-a6ed-11eb-87a5-95dec5880e97.png)
+
+
 
 
 ## Mock de Componentes
