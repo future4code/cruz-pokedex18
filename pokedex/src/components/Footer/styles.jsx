@@ -3,46 +3,53 @@ import {BsPeopleCircle} from 'react-icons/bs'
 
 export const Container = styled.div`
   width: 100%;
-  height: 150px;
   background: ${({theme}) => theme.colors.primary};
   box-shadow: 0 8px 8px 8px rgba(0, 0, 0, 0.5);
   bottom: 0;
   ${props => props.theme.fixedFooter && 'position: fixed'};
-
   display: grid;
-  grid: 1fr 1fr / 1fr;
   place-items: center;
 `
 
 export const Footer = styled.footer`
   width: clamp(350px, 80%, 1400px);
   display: grid;
-  grid-template-columns: 1fr 2fr 3fr;
-  grid: 1fr 1fr / repeat(auto-fit, minmax(80px, max-content));
+  grid: 1fr 50px / repeat(3, minmax(80px, max-content));
   place-items: center;
   place-content: space-around;
+  gap: 1rem;
   box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.5);
+  padding-top: 20px;
 `
 
+export const LogoContainer = styled.div``
 export const Logo = styled.img`
   width: 200px;
   cursor: pointer;
 `
 
+export const SocialContainer = styled.div``
 export const Social = styled.img`
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
 `
 
-export const Authors = styled(BsPeopleCircle)`
-  width: 30px;
-  height: 30px;
+export const AuthorsContainer = styled.div`
+  display: flex;
+  gap: 2.5rem;
 `
 
-export const Footer2 = styled.div`
-  width: clamp(350px, 80%, 1400px);
-  display: grid;
-  grid-template-columns: 1fr 2fr 3fr;
-  place-items: center;
-  place-content: space-around;
+export const Authors = styled.img`
+  width: 50px;
+  height: 50px;
+  clip-path: circle(50%);
+`
+
+export const Message = styled.p`
+  grid-column: 1 / 4;
+  align-self: start;
+  width: clamp(350px, 80%, 1280px);
+  text-align: center;
+  font-size: 1.5rem;
+  color: white;
 `

@@ -13,17 +13,22 @@ const PokeCard = props => {
   const go = useGo()
   const [icon, setIcon] = useState(addButton)
 
+  const verifyPokemon = pokemon => pokemon.name === props.name
+  const pokemonInPokedex = pokedex.list.some(verifyPokemon)
+
   const addPokedex = e => {
     e.preventDefault()
     e.stopPropagation()
-    pokedex.dispatch({type: 'add', pokemon: props})
-    setIcon(pokebola)
+    if (!pokemonInPokedex) {
+      pokedex.dispatch({type: 'add', pokemon: props})
+      setIcon(pokebola)
+    } else {
+      setIcon(addButton)
+      pokedex.dispatch({type: 'remove', pokemon: props})
+    }
   }
 
-  if (
-    pokedex.list.some(pokemon => pokemon.name === props.name) &&
-    icon !== pokebola
-  ) {
+  if (pokemonInPokedex && icon !== pokebola) {
     setIcon(pokebola)
   }
 

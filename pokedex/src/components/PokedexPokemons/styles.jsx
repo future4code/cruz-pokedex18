@@ -7,7 +7,7 @@ export const Container = styled.div`
   border: 5px solid #393939;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: ${({theme}) => theme.space(1)};
   gap: ${({theme}) => theme.space(1)};
 `

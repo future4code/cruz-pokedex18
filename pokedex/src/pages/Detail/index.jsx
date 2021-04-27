@@ -35,15 +35,19 @@ const Detail = props => {
   }, [specie])
 
   useEffect(() => {
-    if (evolution?.id) {
+    if (evolution?.id && !evolutionInfo.length) {
       getEvolutions(evolution)
     }
   })
 
-  const description = specie.shape && specie?.flavor_text_entries[0].flavor_text
+  let description
+  if (specie.shape) {
+    const en = specie.flavor_text_entries.find(i => i.language.name === 'en')
+    const regex = new RegExp('\n|\f', 'g')
+    description = en.flavor_text.replace(regex, ' ')
+  }
   const shape = specie.shape && specie?.shape.name
   const habitat = specie.shape && specie?.habitat.name
-  // console.log(evolution)
 
   const getEvolutions = async evolutionChain => {
     //chain.species.name
@@ -53,23 +57,20 @@ const Detail = props => {
     let names = []
     if (evolutionChain?.chain?.species?.name) {
       names.push(evolutionChain?.chain?.species?.name)
-      const evo2 = evolutionChain.chain?.evolves_to[0].species.name
+      const evo2 = evolutionChain.chain?.evolves_to[0]?.species.name
       if (evo2) {
         names.push(evo2)
         const evo3 =
-          evolutionChain.chain?.evolves_to[0].evolves_to[0].species.name
-        names.push(evo3)
+          evolutionChain.chain?.evolves_to[0]?.evolves_to[0]?.species.name
+        if (evo3) names.push(evo3)
       }
     }
-
-    console.log('EVO: ', names)
 
     // const calls = names.map(i => pokeapi({url: `pokemon/${i}`}))
     // const calls = i => pokeapi({url: `pokemon/${i}`})
 
     const r = await Promise.all(names.map(i => pokeapi({url: `pokemon/${i}`})))
     // const r = await Promise.all(names.map(calls))
-    console.log(r)
     setEvolutionInfo(r.map(i => i.data))
   }
 
