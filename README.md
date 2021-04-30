@@ -36,6 +36,10 @@ Dissescamos toda a API para pegar o maximo de informações com o poder oculto d
 
 
 ## Images
+
+![Screenshot from 2021-04-30 00-16-08](https://user-images.githubusercontent.com/7757352/116644338-796faa00-a949-11eb-8595-ce36f75c7964.png)
+![Screenshot from 2021-04-30 00-15-51](https://user-images.githubusercontent.com/7757352/116644341-7bd20400-a949-11eb-9744-0e5fd7ff87f0.png)
+
 ![Screenshot from 2021-04-27 00-14-32](https://user-images.githubusercontent.com/7757352/116179468-c8b99e80-a6ed-11eb-803d-b404213e7ca1.png)
 ![Screenshot from 2021-04-27 00-14-37](https://user-images.githubusercontent.com/7757352/116179471-cc4d2580-a6ed-11eb-8f8d-c4735bca8718.png)
 ![Screenshot from 2021-04-26 23-00-48](https://user-images.githubusercontent.com/7757352/116179443-be97a000-a6ed-11eb-9cdb-7087c8e35e0b.png)
