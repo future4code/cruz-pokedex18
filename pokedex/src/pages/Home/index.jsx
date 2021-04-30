@@ -2,7 +2,6 @@ import * as S from './styles'
 import {useTheme} from 'styled-components'
 import pokemonVideo from 'assets/videos/pokemon-opening-season1.webm'
 import {useEffect} from 'react'
-import pokebola from 'assets/images/pokebola.png'
 import threePokemons from 'assets/images/three-pokemons.png'
 import mewTwo from 'assets/images/mewtwo.png'
 

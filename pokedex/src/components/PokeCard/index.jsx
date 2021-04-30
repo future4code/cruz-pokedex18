@@ -1,7 +1,7 @@
 import * as S from './styles'
 import pokebola from 'assets/images/pokebola.png'
 import addButton from 'assets/images/add-button.png'
-import removeButton from 'assets/images/remove-button.png'
+// import removeButton from 'assets/images/remove-button.png'
 import PokeCardType from 'components/PokeCardType'
 import typesColor from 'constants/typesColor'
 import {PokedexContext} from 'contexts/pokedex'

@@ -43,8 +43,8 @@ const Detail = props => {
   let description
   if (specie.shape) {
     const en = specie.flavor_text_entries.find(i => i.language.name === 'en')
-    const regex = new RegExp('\n|\f', 'g')
-    description = en.flavor_text.replace(regex, ' ')
+    // const regex = new RegExp(/\n|\f/, 'g')
+    description = en.flavor_text.replace(/\n|\f/g, ' ')
   }
   const shape = specie.shape && specie?.shape.name
   const habitat = specie.shape && specie?.habitat.name

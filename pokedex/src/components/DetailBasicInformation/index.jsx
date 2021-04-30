@@ -10,8 +10,17 @@ const DetailBasicInformation = pokemon => {
       <p>{pokemon.description}</p>
       <p>Shape: {pokemon.shape}</p>
       <p>Live: {pokemon.habitat}</p>
-      <S.PokeWeight>Tamanho: {pokemon.weight}cm</S.PokeWeight>
-      <S.PokeHeight>Peso: {pokemon.height}kg</S.PokeHeight>
+      <S.PokeWeight>Weight: {pokemon.weight / 10} kg</S.PokeWeight>
+      <S.PokeHeight>Height: {pokemon.height * 10} cm</S.PokeHeight>
+      <S.PokeType>
+        Type:
+        {pokemon.types.map(i => (
+          <S.PokeTypeImg
+            key={i.type.name}
+            src={`/typetags/${i.type.name}.png`}
+          />
+        ))}
+      </S.PokeType>
       <S.PokeAbilitys>
         Abilities:
         {pokemon.abilities.map(i => (

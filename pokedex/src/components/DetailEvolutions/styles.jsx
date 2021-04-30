@@ -31,21 +31,28 @@ export const OtherContainer = styled.div`
 `
 
 export const NewContainer = styled.div`
-  height: 100%;
-  display: flex;
-  justify-content: space-evenly;
   position: absolute;
   top: 10%;
   left: 0;
   width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid: 1fr / repeat(auto-fit, minmax(50px, 10vw));
+  /* padding: 2rem; */
+  place-items: center;
+  place-content: center;
+  gap: 1rem;
 `
 export const Image = styled.img`
-  width: 300px;
-  height: 350px;
+  width: 15vw;
+  height: 20vw;
 `
 
 export const Arrow = styled(IoIosArrowForward)`
   color: white;
-  font-size: 7rem;
-  margin-top: 120px;
+  font-size: 5vw;
+  flex-basis: 5vw;
+  /* margin-top: 120px; */
+  z-index: 2;
 `

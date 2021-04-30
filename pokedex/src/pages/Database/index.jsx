@@ -1,12 +1,12 @@
-import {useEffect, useRef, useState} from 'react'
-import useGo from 'hooks/useGo'
+import {useCallback, useEffect, useLayoutEffect, useRef, useState} from 'react'
 import * as S from './styles'
 import PokeCard from 'components/PokeCard'
 import usePokeapi from 'hooks/usePokeapi'
 import useInput from 'hooks/useInput'
 import Filter from 'components/Filter'
-import {useTheme} from 'styled-components'
 import Title from 'components/Title'
+import Loading from 'components/Loading'
+import {useTheme} from 'styled-components'
 
 const filterInitialValues = {
   search: '',
@@ -15,42 +15,113 @@ const filterInitialValues = {
 }
 
 const Database = props => {
-  const theme = useTheme()
-  const go = useGo()
+  const [loading, setLoading] = useState(false)
+  const listSize = useRef(0)
+  const cards = useRef()
   const filter = useInput(filterInitialValues)
   const option = useRef(filterInitialValues)
   const [pokemonList, setPokemonList, clearList, filterName] = usePokeapi(
     'pokemon',
     'name'
   )
+  const theme = useTheme()
+  const end = useRef(false)
 
   useEffect(() => {
     if (filter.type && filter.type !== option.current.type) {
       option.current.type = filter.type
-      clearList()
-      console.log('LIMPOU LISTA: ', pokemonList)
-      console.log('partiu', filter.type)
+      clear()
       setPokemonList(`type/${filter.type}`, 'pokemon', 'clear')
     }
 
     if (filter.search.length >= 3 && filter.search !== option.current.search) {
       option.current.search = filter.search
+      clear()
       filterName(filter.search)
     }
-  }, [filter])
+
+    if (!filter.search && option.current.search) {
+      option.current.search = ''
+      startAgain()
+    }
+  }, [filter, clearList, filterName, setPokemonList])
+
+  const clear = () => {
+    listSize.current = 0
+    clearList()
+  }
+
+  // const more = useCallback(() => {
+  //   setPokemonList()
+  // }, [setPokemonList])
+
+  useEffect(() => {
+    console.log(loading, pokemonList.length, listSize.current)
+    if (loading && pokemonList.length <= listSize.current) {
+      console.log('UNLOAD')
+      setLoading(false)
+    }
+  }, [pokemonList])
+
+  const handleScroll = useCallback(
+    e => {
+      const windowSize = window.innerHeight
+      const {bottom, top} = cards.current.getBoundingClientRect()
+      if (windowSize - bottom >= 0 && pokemonList.length !== listSize.current) {
+        listSize.current = pokemonList?.length || 0
+        setPokemonList().then(r => {
+          if (r === -1) {
+            end.current = true
+            setLoading(false)
+          }
+        })
+        if (!end.current) setLoading(true)
+
+        if (!theme.fixedFooter) {
+          theme.dispatch({type: 'set', prop: {fixedFooter: true}})
+          theme.dispatch({
+            type: 'set',
+            prop: {containerPadding: '50px 0 250px 0'}
+          })
+        }
+      }
+
+      if (top + windowSize >= 0 && theme.fixedFooter) {
+        console.log('desativa: ', top + windowSize)
+        theme.dispatch({type: 'set', prop: {fixedFooter: false}})
+        theme.dispatch({
+          type: 'set',
+          prop: {containerPadding: '50px 0'}
+        })
+      }
+    },
+    [pokemonList]
+  )
+
+  useLayoutEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [handleScroll])
+
+  const startAgain = () => {
+    clear()
+    setPokemonList('pokemon', 'name', true)
+  }
 
   return (
     <>
       <Title>List of all Pokemons</Title>
-      <Filter filter={filter} />
-      <S.CardContainer>
-        {pokemonList.length &&
+      <Filter filter={filter} reset={startAgain} />
+      <S.CardContainer ref={cards}>
+        {pokemonList?.length ? (
           pokemonList
             .sort((a, b) => a.id - b.id)
-            .map(pokemon => <PokeCard key={pokemon.id} {...pokemon} />)}
+            .map(pokemon => <PokeCard key={pokemon.id} {...pokemon} />)
+        ) : (
+          <Loading />
+        )}
       </S.CardContainer>
-      <S.ButtonMore onClick={() => setPokemonList()}>Load More</S.ButtonMore>
-      {/* <S.ButtonMore onClick={() => filterName()}>Pegar Nomes</S.ButtonMore> */}
+      {loading && <Loading size={50} />}
     </>
   )
 }

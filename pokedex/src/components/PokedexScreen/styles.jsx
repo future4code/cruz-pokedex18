@@ -1,5 +1,6 @@
 import styled, {css} from 'styled-components'
 import screen from 'assets/images/screen.png'
+import {Link} from 'react-router-dom'
 
 export const Container = styled.div`
   width: 48%;
@@ -58,7 +59,7 @@ export const Image = styled.img`
   }
 `
 
-export const Button = styled.button`
+export const Button = styled(Link)`
   background-color: #333;
   color: gold;
   width: 60%;
@@ -66,6 +67,8 @@ export const Button = styled.button`
   border-radius: ${({theme}) => theme.space(1)};
   font-size: 2.5rem;
   font-weight: bold;
+  text-decoration: none;
+  text-align: center;
 
   @media (min-width: 1600px) {
     height: 16%;

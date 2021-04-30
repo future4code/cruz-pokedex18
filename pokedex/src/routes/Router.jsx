@@ -6,7 +6,7 @@ import {
   Pokedex,
   Types,
   About,
-  Contact,
+  Battle,
   NotFound
 } from 'pages'
 import ScrollToTop from 'components/ScrollToTop'
@@ -25,8 +25,8 @@ const Router = () => {
           <Route path='/detail/:id' component={Detail} />
           <Route exact path='/types' component={Types} />
           <Route path='/types/:type' component={Types} />
+          <Route path='/battle' component={Battle} />
           <Route path='/about' component={About} />
-          <Route path='/contact' component={Contact} />
           <Route component={NotFound} />
         </Switch>
       </Layout>

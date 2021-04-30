@@ -1,103 +1,98 @@
 import axios from 'axios'
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect, useRef, useCallback} from 'react'
 
 const baseURL = 'https://pokeapi.co/api/v2/'
 const pokeapi = axios.create({baseURL})
 
 const usePokeapi = (...option) => {
   const [data, setData] = useState([])
-  const [temp, setTemp] = useState(0)
-  const [itemsPage, setItemsPage] = useState(20)
+  const itemsPage = useRef(20)
   const next = useRef('')
   const previous = useRef('')
   const filtered = useRef([])
   const allPokemonNames = useRef([])
-  const [nextFiltered, setNextFiltered] = useState('')
 
-  useEffect(() => {
-    request(option)
-    // allPokemonNames.current = getData(`pokemon`)
-    // console.log(allPokemonNames)
-  }, [])
+  console.log(data)
+  /*
 
-  const request = (options = '') => {
-    const [endpoint = '', prop = '', clear = ''] = options
-    if (prop) getData(endpoint, prop, clear)
-    else if (next.current) {
-      getData(next.current)
-    } else getData(endpoint)
-  }
 
-  const getData = async (url, catchAll, clear) => {
-    const params = {limit: itemsPage}
-    try {
-      // if (url === 'pokemon' && catchAll === 'name') {
-      //   console.error('PEGA TUDO!!!')
-      //   url = 'pokemon?limit=1118'
-      // }
-      let {data: r} = await pokeapi({url, params})
-      // console.warn('TODOS: ', r)
-      // allPokemonNames.current = r.results
-      next.current = r.next
+  */
 
-      if (catchAll) {
-        switch (url.split('/')[0]) {
-          case 'pokemon':
-            if (next.current && previous.current) {
-              r = await getAll(next.current, r.results, 'name')
-            } else {
-              r = await getAll(url, r.results, catchAll)
-            }
-            break
-          case 'type':
-            r = await getAll(url, r.pokemon, catchAll)
+  const getData = useCallback(
+    async (url, catchAll, clear) => {
+      console.log('getData', url, catchAll)
+      const params = {limit: itemsPage.current}
+      try {
+        let {data: r} = await pokeapi({url, params})
+        next.current = r.next
+        // let currentType
+        console.log('date ANTES: ', data)
+        console.log('antes: ', next.current, previous.current)
 
-            break
-          default:
-            console.log('FUDEO', url)
+        if (catchAll) {
+          switch (url.split('/')[0]) {
+            case 'pokemon':
+              if (next.current && previous.current) {
+                r = await getAll(next.current, r.results, 'name')
+              } else {
+                console.log(data)
+                console.log(r.results)
+                r = await getAll(url, r.results, catchAll)
+              }
+              break
+            case 'type':
+              console.log('TYPE')
+              // currentType = url.split('/')[1]
+              r = await getAll(url, r.pokemon, catchAll)
+
+              break
+            default:
+              console.log('FUDEO', url)
+          }
+        } else if (next.current && previous.current) {
+          r = await getAll(next.current, r.results, 'name')
         }
-      }
 
-      if (next.current && previous.current) {
-        r = await getAll(next.current, r.results, 'name')
-      }
-
-      previous.current = next.current
-      if (clear) return setData([...r])
-
-      if (!data.length && !Array.isArray(r)) setData(r)
-      else {
-        let PokeWithImages = r
-        if (Array.isArray(r)) {
-          PokeWithImages = r.filter(
-            i => i.sprites?.other['official-artwork']?.front_default
-          )
+        previous.current = next.current
+        if (clear) {
+          console.log('LImpezinha')
+          return setData([...r])
         }
-        setData([...data, ...PokeWithImages])
+
+        console.log(data)
+        if (!data.length && !Array.isArray(r)) {
+          console.log('NAO EH ARRAY')
+          setData(r)
+        } else {
+          let PokeWithImages
+          if (Array.isArray(r)) {
+            PokeWithImages = r.filter(
+              i => i.sprites?.other['official-artwork']?.front_default
+            )
+          }
+          setData([...data, ...PokeWithImages])
+        }
+      } catch (e) {
+        console.error(e)
       }
-    } catch (e) {
-      console.error(e)
-    }
-  }
+    },
+    [data, itemsPage]
+  )
 
   const getAll = async (url, list, props) => {
-    console.log('all: ', url, list, props)
     if (url.includes('/')) url = 'pokemon'
-    console.log('url: ', url)
 
     try {
+      console.log('tryed')
       const allPokemons = list.map(i => {
         if (typeof i[props] !== 'string' && typeof i !== 'string') {
-          console.log(i)
           filtered.current = [...filtered.current, i[props].name]
           return pokeapi({url: `pokemon/${i[props].name}`})
         }
         if (typeof i === 'string') {
-          console.log('EH STRING', `${url}/${i}`)
           return pokeapi({url: `${url}/${i}`})
         }
 
-        console.warn(`${url}/${i[props]}`)
         return pokeapi({url: `${url}/${i[props]}`})
       })
 
@@ -111,35 +106,71 @@ const usePokeapi = (...option) => {
     }
   }
 
+  const request = useCallback(
+    (options = '') => {
+      console.warn('inside')
+      const [endpoint = '', prop = '', clear = ''] = options
+      if (prop) {
+        console.log('REQUEST ALL')
+        console.log('request init: ', data)
+        getData(endpoint, prop, clear)
+      } else if (next.current) {
+        console.log('REQUEST NEXT')
+        getData(next.current)
+      } else {
+        console.log('REQUEST ENDPOINT')
+        getData(endpoint)
+      }
+    },
+    [getData]
+  )
+
+  useEffect(() => {
+    console.log('NEW REQUEST')
+    request(option)
+  }, [])
+
   const update = async (...option) => {
-    if (filtered.current) {
-      console.log(filtered.current)
-      const nextFilter = filtered.current.slice(
-        data.length,
-        data.length + itemsPage
-      )
-      console.warn(nextFilter)
+    const list = filtered.current.length
+    const current = data.length
+    const page = itemsPage.current
+    if (current === list) {
+      return -1
+    }
+    if (list && current < list) {
+      let final = current + page
+      if (final > list) {
+        final = list
+      }
+      let nextFilter = filtered.current.slice(current, current + final)
       const r = await getAll(`pokemon`, nextFilter, 'name')
-      console.log(r)
 
       const PokeWithImages = r.filter(
         i => i.sprites?.other['official-artwork']?.front_default
       )
 
-      setData([...data, ...PokeWithImages])
-    }
-    request(option)
+      const all = [...data, ...PokeWithImages]
+      const names = all.map(i => i.name)
+      filtered.current = filtered.current.filter((p, i) =>
+        i < final ? names.includes(p) : true
+      )
+
+      setData(all)
+    } else if (!list) {
+      console.log('UPDATE')
+      request([...option])
+    } else return -1
   }
 
-  const more = () => request
   const clear = () => {
-    console.log('LIMPOU')
     setData([])
+    filtered.current = []
+    next.current = ''
+    previous.current = ''
   }
 
   const filterByName = async search => {
     allPokemonNames.current = await pokeapi('pokemon?limit=1118')
-    console.log(allPokemonNames)
     const filterPokemon = poke => poke.name.includes(search)
     const filtered = allPokemonNames.current.data.results.filter(filterPokemon)
     const r = await getAll(`pokemon`, filtered, 'name')
@@ -147,7 +178,6 @@ const usePokeapi = (...option) => {
     const PokeWithImages = r.filter(
       i => i.sprites?.other['official-artwork']?.front_default
     )
-    console.log(PokeWithImages)
     setData([...PokeWithImages])
   }
 

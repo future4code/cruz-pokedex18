@@ -1,14 +1,12 @@
 import * as S from './styles'
 import {PokedexContext} from 'contexts/pokedex'
 import {useContext, useState} from 'react'
-import {useTheme} from 'styled-components'
 import pokebola from 'assets/images/pokebola-black.png'
 import PokedexScreen from 'components/PokedexScreen'
 import PokedexInformation from 'components/PokedexInformation'
 import PokedexPokemons from 'components/PokedexPokemons'
 
 const Pokedex = () => {
-  const theme = useTheme()
   const pokedex = useContext(PokedexContext)
   const [active, setActive] = useState({})
 
@@ -38,7 +36,11 @@ const Pokedex = () => {
           types={countTypes}
           pokemons={pokedex.list}
         />
-        <PokedexPokemons pokemons={pokedex.list} select={setActive} />
+        <PokedexPokemons
+          pokemons={pokedex.list}
+          remove={pokedex.dispatch}
+          select={setActive}
+        />
         {/* <S.Screen>
         {active.name && (
           <>
