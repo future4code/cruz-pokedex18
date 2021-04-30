@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import {BsPeopleCircle} from 'react-icons/bs'
 
 export const Container = styled.div`
   width: 100%;
@@ -14,12 +13,10 @@ export const Container = styled.div`
 export const Footer = styled.footer`
   width: clamp(350px, 80%, 1400px);
   display: grid;
-  grid: 1fr 50px / repeat(3, minmax(80px, max-content));
+  grid: 1fr 30px / repeat(3, minmax(80px, max-content));
   place-items: center;
   place-content: space-around;
-  gap: 1rem;
   box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.5);
-  padding-top: 20px;
 `
 
 export const LogoContainer = styled.div``
@@ -31,7 +28,7 @@ export const Logo = styled.img`
 export const SocialContainer = styled.div``
 export const Social = styled.img`
   width: 100px;
-  height: 100px;
+  /* height: 100px; */
 `
 
 export const AuthorsContainer = styled.div`
@@ -50,6 +47,6 @@ export const Message = styled.p`
   align-self: start;
   width: clamp(350px, 80%, 1280px);
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: white;
 `

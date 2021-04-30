@@ -1,6 +1,4 @@
 import styled from 'styled-components'
-import screenBackground from 'assets/images/screen.png'
-// import pokedex from 'assets/images/PokeContainer.png'
 
 export const Container = styled.section`
   width: clamp(350px, 96%, 1280px);

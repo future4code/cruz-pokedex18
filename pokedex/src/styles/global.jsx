@@ -3,10 +3,10 @@ import background from 'assets/images/background.png'
 
 const move = keyframes`
   from {
-    background-position: 0% 0%;
+    background-position: 0% 0px;
   }
   to {
-    background-position: 100% 100%;
+    background-position: 100% 800px;
   }
 `
 

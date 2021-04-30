@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 import pokebolaBackground from 'assets/images/pokebola-background.png'
 
 export const CardContainer = styled.div`
@@ -58,9 +58,39 @@ export const PokeImg = styled.img`
   padding-bottom: 16px;
   padding-left: 24px;
 `
-export const Pokebola = styled.img`
-  width: 32px;
+
+export const ActionContainer = styled.div`
+  width: 100px;
+  height: 100px;
   position: absolute;
   left: 5%;
   bottom: 5%;
+
+  &:hover {
+    box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.5);
+    border: 3px solid #393939;
+  }
+`
+
+const rotateIcon = keyframes`
+from {
+
+    transform: rotate(0deg);
+}
+  to {
+    transform: rotate(360deg);
+  }
+`
+
+export const Pokebola = styled.img`
+  width: 55px;
+  height: 55px;
+  position: absolute;
+  left: 5%;
+  bottom: 5%;
+  z-index: 10;
+
+  :hover {
+    animation: ${rotateIcon} 0.5s both alternate;
+  }
 `

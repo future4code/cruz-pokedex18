@@ -31,17 +31,15 @@ export const PokeWeight = styled.p`
 export const PokeType = styled.p`
   font-weight: bold;
   font-style: italic;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 `
+export const PokeTypeImg = styled.img``
 
 export const PokeAbilitys = styled.p`
   font-weight: bold;
   font-style: italic;
+  display: flex;
+  align-items: center;
 `
-
-// export const Attributes = styled.div`
-//   display: grid;
-//   justify-content: center;
-//   padding-right: 100px;
-//   grid-template-columns: auto;
-//   grid-gap: 10px;
-//   background-color: #F8A54F;

@@ -1,5 +1,4 @@
 import styled, {css, keyframes} from 'styled-components'
-import pokebola from 'assets/images/pokebola.png'
 import {TiArrowDownThick} from 'react-icons/ti'
 
 export const Container = styled.section`
@@ -76,21 +75,6 @@ export const TitleBottom = styled.h2`
   align-self: end;
   margin-bottom: 1rem;
   text-shadow: 2px 2px 2px #ccc;
-`
-
-const rotate = keyframes`
-  0% {
-      transform: rotate(0);
-  }
-  35% {
-    transform: rotate(-30deg);
-  }
-  65% {
-    transform: rotate(30deg);
-  }
-  100% {
-    transform: rotate(0);
-  }
 `
 
 const deg = '-15deg'
